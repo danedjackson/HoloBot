@@ -1,11 +1,16 @@
-const { SlashCommandBuilder, ActionRowBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const {image_search} = require('duckduckgo-images-api');
 const { getHoloCounters } = require('../../functions/holoBattles');
+
+const randomNumber = (max) => {
+	return Math.floor(Math.random() * max);
+}
 
 module.exports = {
 	cooldown: 5,
 	data: new SlashCommandBuilder()
 		.setName('holo')
-		.setDescription('Replies with Pong!')
+		.setDescription('Replies suggested team formations!')
 		.addStringOption(lead => 
 			lead.setName('lead')
 				.setDescription('Holobattle team\'s lead esper')
@@ -19,12 +24,23 @@ module.exports = {
 						.setDescription('Second member esper in holobattle team')
 						.setRequired(true)),
 	async execute(interaction) {
+		await interaction.deferReply();
 		const leadEsper = interaction.options.getString('lead');
 		const firstEsper = interaction.options.getString('first-member');
 		const secondEsper = interaction.options.getString('second-member');
 		
 		const response = getHoloCounters(leadEsper, firstEsper, secondEsper);
 		for (let x = 0; x < response.length; x++){
+
+			let searchResult = await image_search({ query: `Dislyte ${response[x].esper1.name}`, moderate: true });
+			const leadEsperImage = searchResult[randomNumber(5)].image;
+
+			searchResult = await image_search({ query: `Dislyte ${response[x].esper2.name}`, moderate: true });
+			const secondEsperImage = searchResult[randomNumber(5)].image;
+
+			searchResult = await image_search({ query: `Dislyte ${response[x].esper3.name}`, moderate: true });
+			const thirdEsperImage = searchResult[randomNumber(5)].image;
+
 			const embed = new EmbedBuilder()
 							.setColor(0x0099FF)
 							.setTitle('Holobattle Formation Recommendations')
@@ -34,14 +50,13 @@ module.exports = {
 								{ name: response[x].esper3.name, value: response[x].esper3.details, inline: true },
 							)
 							.setURL('https://playdislyte.com/')
-			const esper1 = new EmbedBuilder().setURL('https://playdislyte.com/').setImage('https://static.wikia.nocookie.net/dislyte/images/b/ba/Jin_Yuyao_sprite.png/revision/latest?cb=20220321180344')
-			const esper2 = new EmbedBuilder().setURL('https://playdislyte.com/').setImage('https://static.wikia.nocookie.net/dislyte/images/5/5e/Dislyte_Everett_2nd_album.jpg/revision/latest/scale-to-width-down/250?cb=20230108073112');
-			const esper3 = new EmbedBuilder().setURL('https://playdislyte.com/').setImage('https://pillarofgaming.com/wp-content/uploads/2021/12/Sif-Sally.jpg');
-							
+			const esper1 = new EmbedBuilder().setURL('https://playdislyte.com/').setImage(leadEsperImage)
+			const esper2 = new EmbedBuilder().setURL('https://playdislyte.com/').setImage(secondEsperImage);
+			const esper3 = new EmbedBuilder().setURL('https://playdislyte.com/').setImage(thirdEsperImage);
 			if(x > 0) {
-				await interaction.channel.send({embeds: [embed, esper1, esper2, esper3]})
+				await interaction.channel.send( {embeds: [embed, esper1, esper2, esper3]} );
 			} else {
-				await interaction.reply( {embeds: [embed, esper1, esper2, esper3]} );
+				await interaction.editReply( {embeds: [embed, esper1, esper2, esper3]} );
 			}
 		}
 	},
