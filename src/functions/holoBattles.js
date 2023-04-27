@@ -9,7 +9,7 @@ const getHoloCounters = (leadEsper, firstEsper, secondEsper) => {
     let counters = null;
 
     if (data[key]) {
-        counters = data[key].counters[0].esper1.name;
+        counters = data[key].counters;
     } else {
         // Try all possible permutations of the espers
         const permutations = permute(espers);
@@ -23,7 +23,6 @@ const getHoloCounters = (leadEsper, firstEsper, secondEsper) => {
     }
 
     if (counters) {
-        console.log(counters);
         return counters;
     } else {
         console.log("Key not found");
