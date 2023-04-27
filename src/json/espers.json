@@ -7,26 +7,44 @@
                     "details": "Ahmed's details"
                 },
                 "esper2": {
-                    "name": "everett",
+                    "name": "Everett",
                     "details": "Everett's details"
                 },
                 "esper3": {
-                    "name": "sally",
+                    "name": "Sally",
                     "details": "Sally's details"
                 }
             },
             {
                 "esper1": {
-                    "name": "jin-yuyao",
+                    "name": "Jin-Yuyao",
                     "details": "Jin's details"
                 },
                 "esper2": {
-                    "name": "everett",
+                    "name": "Everett",
                     "details": "Everett's details"
                 },
                 "esper3": {
-                    "name": "clara",
+                    "name": "Clara",
                     "details": "Clara's details"
+                }
+            }
+        ]
+    },
+    "jin-yuyao,gabrielle,everett": {
+        "counters": [
+            {
+                "esper1": {
+                    "name": "Sally",
+                    "details": "Light Above for Gabrielle"
+                },
+                "esper2": {
+                    "name": "Luo-Yan",
+                    "details": "Ocean Waves for skill spam"
+                },
+                "esper3": {
+                    "name": "Merideth",
+                    "details": "Ocean Waves for skill spam"
                 }
             }
         ]

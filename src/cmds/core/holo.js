@@ -32,22 +32,22 @@ module.exports = {
 		const response = getHoloCounters(leadEsper, firstEsper, secondEsper);
 		for (let x = 0; x < response.length; x++){
 
-			let searchResult = await image_search({ query: `Dislyte ${response[x].esper1.name}`, moderate: true });
+			let searchResult = await image_search({ query: `${response[x].esper1.name} + Dislyte`, moderate: true });
 			const leadEsperImage = searchResult[randomNumber(5)].image;
 
-			searchResult = await image_search({ query: `Dislyte ${response[x].esper2.name}`, moderate: true });
+			searchResult = await image_search({ query: `${response[x].esper2.name} + Dislyte`, moderate: true });
 			const secondEsperImage = searchResult[randomNumber(5)].image;
 
-			searchResult = await image_search({ query: `Dislyte ${response[x].esper3.name}`, moderate: true });
+			searchResult = await image_search({ query: `${response[x].esper3.name} + Dislyte`, moderate: true });
 			const thirdEsperImage = searchResult[randomNumber(5)].image;
 
 			const embed = new EmbedBuilder()
 							.setColor(0x0099FF)
 							.setTitle('Holobattle Formation Recommendations')
 							.addFields(
-								{ name: response[x].esper1.name, value: response[x].esper1.details, inline: true },
-								{ name: response[x].esper2.name, value: response[x].esper2.details, inline: true },
-								{ name: response[x].esper3.name, value: response[x].esper3.details, inline: true },
+								{ name: `${response[x].esper1.name.replace('-', ' ')}**[Lead]**`, value: response[x].esper1.details, inline: true },
+								{ name: response[x].esper2.name.replace('-', ' '), value: response[x].esper2.details, inline: true },
+								{ name: response[x].esper3.name.replace('-', ' '), value: response[x].esper3.details, inline: true },
 							)
 							.setURL('https://playdislyte.com/')
 			const esper1 = new EmbedBuilder().setURL('https://playdislyte.com/').setImage(leadEsperImage)
