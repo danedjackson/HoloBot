@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { holoBattles } = require('../../functions/holoBattles');
+const { getHoloCounters } = require('../../functions/holoBattles');
 
 module.exports = {
 	cooldown: 5,
@@ -23,8 +23,8 @@ module.exports = {
 		const firstEsper = interaction.options.getString('first-member');
 		const secondEsper = interaction.options.getString('second-member');
 		
-		//holoBattles()
+		const response = getHoloCounters(leadEsper, firstEsper, secondEsper);
 
-		await interaction.reply(`${leadEsper} | ${firstEsper} | ${secondEsper}`);
+		await interaction.reply(response);
 	},
 };

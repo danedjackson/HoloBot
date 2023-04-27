@@ -1,0 +1,20 @@
+{
+    "tiye,dahlia,ophelia": {
+        "counters": [
+            {
+                "esper1": {
+                    "name": "jin",
+                    "details": "Jin's details"
+                },
+                "esper2": {
+                    "name": "everett",
+                    "details": "Everett's details"
+                },
+                "esper3": {
+                    "name": "sally",
+                    "details": "Sally's details"
+                }
+            }
+        ]
+    }
+}

@@ -3,7 +3,7 @@ require('log-timestamp')(() => {return new Date().toISOString() + " %s"});
 const { Client, Collection, GatewayIntentBits, Events } = require("discord.js");
 const config = require('./cfg/config.json');
 const fs = require("fs");
-const path = require("path")
+const path = require("path");
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
