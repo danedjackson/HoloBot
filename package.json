@@ -1,0 +1,28 @@
+{
+  "name": "holobot",
+  "version": "1.0.0",
+  "description": "Discord bot based on the game Dislyte",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danedjackson/HoloBot.git"
+  },
+  "author": "Dane Jackson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danedjackson/HoloBot/issues"
+  },
+  "homepage": "https://github.com/danedjackson/HoloBot#readme",
+  "dependencies": {
+    "discord.js": "^14.9.0",
+    "express": "^4.18.2",
+    "log-timestamp": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.39.0"
+  }
+}
